@@ -48,8 +48,8 @@ public class ReservationService {
         Reservation reservation = new Reservation(item, user, "PENDING", startAt, endAt);
         Reservation savedReservation = reservationRepository.save(reservation);
 
-        RentalLog rentalLog = new RentalLog(savedReservation, "로그 메세지", "CREATE");
-        rentalLogService.save(rentalLog);
+//        RentalLog rentalLog = new RentalLog(savedReservation, "로그 메세지", "CREATE");
+//        rentalLogService.save(rentalLog);
     }
 
     // TODO: 3. N+1 문제
