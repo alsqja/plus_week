@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.User;
+import com.example.demo.entity.UserStatus;
 import lombok.Getter;
 
 @Getter
@@ -22,7 +23,8 @@ public class UserRequestDto {
                 this.role,
                 this.email,
                 this.nickname,
-                this.password
+                this.password,
+                UserStatus.NORMAL
         );
     }
 

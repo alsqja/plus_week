@@ -1,9 +1,16 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,9 +32,10 @@ public class Reservation {
 
     private LocalDateTime endAt;
 
-    private String status; // PENDING, APPROVED, CANCELED, EXPIRED
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status; // PENDING, APPROVED, CANCELED, EXPIRED
 
-    public Reservation(Item item, User user, String status, LocalDateTime startAt, LocalDateTime endAt) {
+    public Reservation(Item item, User user, ReservationStatus status, LocalDateTime startAt, LocalDateTime endAt) {
         this.item = item;
         this.user = user;
         this.status = status;
@@ -35,9 +43,10 @@ public class Reservation {
         this.endAt = endAt;
     }
 
-    public Reservation() {}
+    public Reservation() {
+    }
 
-    public void updateStatus(String status) {
+    public void updateStatus(ReservationStatus status) {
         this.status = status;
     }
 }

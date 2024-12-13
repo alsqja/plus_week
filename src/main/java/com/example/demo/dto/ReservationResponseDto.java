@@ -1,11 +1,12 @@
 package com.example.demo.dto;
 
+import com.example.demo.dto.common.BaseResDtoType;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class ReservationResponseDto {
+public class ReservationResponseDto implements BaseResDtoType {
     private Long id;
     private String nickname;
     private String itemName;

@@ -3,6 +3,7 @@ package com.example.demo.config;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.Reservation;
 import com.example.demo.entity.User;
+import com.example.demo.entity.UserStatus;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.RentalLogRepository;
 import com.example.demo.repository.ReservationRepository;
@@ -27,12 +28,12 @@ public class DataInitializer {
     public void init() {
 
         for (int i = 0; i < 3; i++) {
-            User adminUser = new User("admin", "email" + i, "nickname" + i, PasswordEncoder.encode("0000"));
+            User adminUser = new User("admin", "email" + i, "nickname" + i, PasswordEncoder.encode("0000"), UserStatus.NORMAL);
             userRepository.save(adminUser);
         }
 
         for (int i = 3; i < 6; i++) {
-            User user = new User("user", "email" + i, "nickname" + i, PasswordEncoder.encode("0000"));
+            User user = new User("user", "email" + i, "nickname" + i, PasswordEncoder.encode("0000"), UserStatus.NORMAL);
             userRepository.save(user);
         }
 
@@ -49,7 +50,7 @@ public class DataInitializer {
             User user = userRepository.findById(randomUserId).get();
             Item item = itemRepository.findById(randomItemId).get();
 
-            Reservation reservation = new Reservation(item, user, null, LocalDateTime.of(2024, 11, 11, 13, 0, 0), LocalDateTime.of(2024, 12,11, 13, 0,0));
+            Reservation reservation = new Reservation(item, user, null, LocalDateTime.of(2024, 11, 11, 13, 0, 0), LocalDateTime.of(2024, 12, 11, 13, 0, 0));
             reservationRepository.save(reservation);
         }
     }

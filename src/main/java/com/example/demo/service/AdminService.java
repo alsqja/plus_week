@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
+import com.example.demo.entity.UserStatus;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,6 @@ public class AdminService {
             throw new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다.");
         }
 
-        userRepository.updateAllUserStatus("BLOCKED", userIds);
+        userRepository.updateAllUserStatus(UserStatus.BLOCKED, userIds);
     }
 }

@@ -1,6 +1,11 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 
 @Entity
@@ -13,21 +18,21 @@ public class User {
     private String email;
     private String nickname;
     private String password;
-    private String status; // NORMAL, BLOCKED
+
+    @Enumerated(value = EnumType.STRING)
+    private UserStatus status; // NORMAL, BLOCKED
 
     @Enumerated(value = EnumType.STRING)
     private Role role = Role.USER;
 
-    public User(String role, String email, String nickname, String password) {
+    public User(String role, String email, String nickname, String password, UserStatus status) {
         this.role = Role.of(role);
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+        this.status = status;
     }
 
-    public User() {}
-
-    public void updateStatusToBlocked() {
-        this.status = "BLOCKED";
+    public User() {
     }
 }

@@ -1,6 +1,5 @@
 package com.example.demo.repository;
 
-import com.example.demo.dto.ReservationResponseDto;
 import com.example.demo.entity.Reservation;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -33,4 +31,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     @EntityGraph(attributePaths = {"user", "item"})
     List<Reservation> findAll();
+
+    default Reservation findReservationById(Long id) {
+        return findById(id).orElseThrow(() -> new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다."));
+    }
 }
