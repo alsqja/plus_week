@@ -6,10 +6,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
+import org.jetbrains.annotations.TestOnly;
 
 @Entity
 @Getter
+@Table(name = "`user`")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +37,15 @@ public class User {
     }
 
     public User() {
+    }
+
+    @TestOnly
+    public User(Long id, String role, String email, String nickname, String password, UserStatus status) {
+        this.id = id;
+        this.role = Role.of(role);
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.status = status;
     }
 }

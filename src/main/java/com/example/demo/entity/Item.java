@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
+import org.jetbrains.annotations.TestOnly;
 
 
 @Entity
@@ -33,7 +34,7 @@ public class Item {
     @JoinColumn(name = "manager_id")
     private User manager;
 
-    @Column(nullable = false, columnDefinition = "varchar(20) default 'PENDING'")
+    @Column(nullable = false)
     private String status;
 
     public Item(String name, String description, User manager, User owner) {
@@ -41,8 +42,20 @@ public class Item {
         this.description = description;
         this.manager = manager;
         this.owner = owner;
+        this.status = "PENDING";
     }
 
     public Item() {
+        this.status = "PENDING";
+    }
+
+    @TestOnly
+    public Item(Long id, String testItemName, String testDescription, User manager, User owner, String status) {
+        this.id = id;
+        this.name = testItemName;
+        this.description = testDescription;
+        this.manager = manager;
+        this.owner = owner;
+        this.status = status;
     }
 }
