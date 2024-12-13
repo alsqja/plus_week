@@ -3,8 +3,10 @@ package com.example.demo.dto;
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class UserRequestDto {
     private String email;
     private String nickname;

@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Generated;
 import lombok.Getter;
 import org.jetbrains.annotations.TestOnly;
 
@@ -39,6 +40,7 @@ public class User {
     public User() {
     }
 
+    @Generated
     @TestOnly
     public User(Long id, String role, String email, String nickname, String password, UserStatus status) {
         this.id = id;

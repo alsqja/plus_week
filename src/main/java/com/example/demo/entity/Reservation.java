@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
+import org.jetbrains.annotations.TestOnly;
 
 import java.time.LocalDateTime;
 
@@ -44,6 +45,16 @@ public class Reservation {
     }
 
     public Reservation() {
+    }
+
+    @TestOnly
+    public Reservation(Long id, Item item, User user, ReservationStatus status, LocalDateTime startAt, LocalDateTime endAt) {
+        this.id = id;
+        this.item = item;
+        this.user = user;
+        this.status = status;
+        this.startAt = startAt;
+        this.endAt = endAt;
     }
 
     public void updateStatus(ReservationStatus status) {

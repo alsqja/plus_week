@@ -5,7 +5,6 @@ import com.example.demo.entity.Reservation;
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserStatus;
 import com.example.demo.repository.ItemRepository;
-import com.example.demo.repository.RentalLogRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.util.PasswordEncoder;
@@ -22,7 +21,6 @@ public class DataInitializer {
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
     private final ReservationRepository reservationRepository;
-    private final RentalLogRepository rentalLogRepository;
 
     @PostConstruct
     public void init() {
