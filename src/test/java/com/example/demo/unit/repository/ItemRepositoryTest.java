@@ -1,8 +1,10 @@
-package com.example.demo.repository;
+package com.example.demo.unit.repository;
 
 import com.example.demo.entity.Item;
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserStatus;
+import com.example.demo.repository.ItemRepository;
+import com.example.demo.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

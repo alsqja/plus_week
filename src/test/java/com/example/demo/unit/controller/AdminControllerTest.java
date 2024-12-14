@@ -1,6 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.unit.controller;
 
 import com.example.demo.config.WebConfig;
+import com.example.demo.controller.AdminController;
 import com.example.demo.dto.ReportRequestDto;
 import com.example.demo.service.AdminService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,5 +1,6 @@
-package com.example.demo.util;
+package com.example.demo.unit.util;
 
+import com.example.demo.util.PasswordEncoder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

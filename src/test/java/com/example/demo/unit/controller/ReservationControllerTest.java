@@ -1,6 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.unit.controller;
 
 import com.example.demo.config.WebConfig;
+import com.example.demo.controller.ReservationController;
 import com.example.demo.dto.ReservationRequestDto;
 import com.example.demo.dto.ReservationResponseDto;
 import com.example.demo.entity.Item;

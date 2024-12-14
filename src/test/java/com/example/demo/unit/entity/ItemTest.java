@@ -1,5 +1,8 @@
-package com.example.demo.entity;
+package com.example.demo.unit.entity;
 
+import com.example.demo.entity.Item;
+import com.example.demo.entity.User;
+import com.example.demo.entity.UserStatus;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

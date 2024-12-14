@@ -1,6 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.unit.controller;
 
 import com.example.demo.constants.GlobalConstants;
+import com.example.demo.controller.UserController;
 import com.example.demo.dto.Authentication;
 import com.example.demo.dto.LoginRequestDto;
 import com.example.demo.dto.UserRequestDto;
