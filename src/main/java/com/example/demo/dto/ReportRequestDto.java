@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
+import lombok.Generated;
 import lombok.Getter;
+import org.jetbrains.annotations.TestOnly;
 
 import java.util.List;
 
@@ -8,5 +10,12 @@ import java.util.List;
 public class ReportRequestDto {
     private List<Long> userIds;
 
-    public ReportRequestDto() {}
+    public ReportRequestDto() {
+    }
+
+    @TestOnly
+    @Generated
+    public ReportRequestDto(List<Long> userIds) {
+        this.userIds = userIds;
+    }
 }
