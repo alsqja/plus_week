@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Generated;
 import lombok.Getter;
 import org.jetbrains.annotations.TestOnly;
 
@@ -47,6 +48,7 @@ public class Reservation {
     public Reservation() {
     }
 
+    @Generated
     @TestOnly
     public Reservation(Long id, Item item, User user, ReservationStatus status, LocalDateTime startAt, LocalDateTime endAt) {
         this.id = id;
