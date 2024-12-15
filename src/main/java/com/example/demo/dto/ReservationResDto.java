@@ -17,15 +17,6 @@ public class ReservationResDto implements BaseResDtoType {
     private final LocalDateTime endAt;
     private final ReservationStatus status;
 
-    public ReservationResDto(Long id, Long itemId, Long userId, LocalDateTime startAt, LocalDateTime endAt, ReservationStatus status) {
-        this.id = id;
-        this.itemId = itemId;
-        this.userId = userId;
-        this.startAt = startAt;
-        this.endAt = endAt;
-        this.status = status;
-    }
-
     public ReservationResDto(Reservation reservation) {
         this.id = reservation.getId();
         this.itemId = reservation.getItem().getId();

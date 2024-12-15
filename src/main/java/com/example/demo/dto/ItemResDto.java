@@ -14,21 +14,12 @@ public class ItemResDto implements BaseResDtoType {
     private final Long managerId;
     private final String status;
 
-    public ItemResDto(Long id, String name, String description, Long ownerId, Long managerId, String status) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.ownerId = ownerId;
-        this.managerId = managerId;
-        this.status = status;
-    }
-
     public ItemResDto(Item item) {
         this.id = item.getId();
         this.name = item.getName();
         this.description = item.getDescription();
         this.ownerId = item.getOwner().getId();
         this.managerId = item.getManager().getId();
-        this.status = item.getStatus() == null ? "PENDING" : item.getStatus();
+        this.status = item.getStatus();
     }
 }

@@ -11,13 +11,16 @@ class PasswordEncoderTest {
     void encode() {
         // given
         String rawPassword = "testPassword";
+        PasswordEncoder passwordEncoder = new PasswordEncoder();
 
         // when
         String encodedPassword = PasswordEncoder.encode(rawPassword);
+        String encodedConstructorPassword = passwordEncoder.encode(rawPassword);
 
         // then
         assertNotNull(encodedPassword);
         assertNotEquals(rawPassword, encodedPassword);
+        assertNotEquals(rawPassword, encodedConstructorPassword);
     }
 
     @Test

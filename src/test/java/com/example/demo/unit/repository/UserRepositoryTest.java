@@ -4,6 +4,7 @@ import com.example.demo.entity.User;
 import com.example.demo.entity.UserStatus;
 import com.example.demo.repository.UserRepository;
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,6 +24,11 @@ class UserRepositoryTest {
 
     @Autowired
     EntityManager entityManager;
+
+    @AfterEach
+    void cleanup() {
+        userRepository.deleteAll();
+    }
 
     @Test
     void findByEmail() {

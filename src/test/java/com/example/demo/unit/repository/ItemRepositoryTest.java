@@ -5,6 +5,7 @@ import com.example.demo.entity.User;
 import com.example.demo.entity.UserStatus;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.UserRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,6 +24,12 @@ class ItemRepositoryTest {
     private UserRepository userRepository;
     @Autowired
     private ItemRepository itemRepository;
+
+    @AfterEach
+    void cleanup() {
+        itemRepository.deleteAll();
+        userRepository.deleteAll();
+    }
 
     @Test
     @Transactional
