@@ -8,6 +8,7 @@ import com.example.demo.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +39,24 @@ class ItemRepositoryTest {
         assertThrows(ObjectOptimisticLockingFailureException.class, () -> itemRepository.save(statusNullItem));
         assertNotNull(savedItem.getStatus());
         assertEquals("PENDING", savedItem.getStatus());
+    }
+
+    @Test
+    void findItemByIdTest() {
+        User owner = new User("admin", "testOwnerEmail", "testOwnerName", "testOwnerPassword", UserStatus.NORMAL);
+        User manager = new User("admin", "testManagerEmail", "testManagerName", "testManagerPassword", UserStatus.NORMAL);
+        userRepository.save(owner);
+        userRepository.save(manager);
+
+        Item item = new Item("testItemName", "testDescription", manager, owner);
+        Item savedItem = itemRepository.save(item);
+
+        Item findItem = itemRepository.findItemById(savedItem.getId());
+
+        InvalidDataAccessApiUsageException e = assertThrows(InvalidDataAccessApiUsageException.class, () -> itemRepository.findItemById(0L));
+
+        assertEquals(savedItem.getId(), findItem.getId());
+        assertEquals(manager, findItem.getManager());
+        assertEquals("해당 ID에 맞는 값이 존재하지 않습니다.", e.getMessage());
     }
 }
