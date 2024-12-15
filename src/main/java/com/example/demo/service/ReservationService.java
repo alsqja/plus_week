@@ -8,6 +8,7 @@ import com.example.demo.entity.QUser;
 import com.example.demo.entity.Reservation;
 import com.example.demo.entity.ReservationStatus;
 import com.example.demo.entity.User;
+import com.example.demo.exception.ReservationConflictException;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
@@ -42,11 +43,11 @@ public class ReservationService {
     // TODO: 1. 트랜잭션 이해
     @Transactional
     public Reservation createReservation(Long itemId, Long userId, LocalDateTime startAt, LocalDateTime endAt) {
-        // 쉽게 데이터를 생성하려면 아래 유효성검사 주석 처리
-//        List<Reservation> haveReservations = reservationRepository.findConflictingReservations(itemId, startAt, endAt);
-//        if(!haveReservations.isEmpty()) {
-//            throw new ReservationConflictException("해당 물건은 이미 그 시간에 예약이 있습니다.");
-//        }
+
+        List<Reservation> haveReservations = reservationRepository.findConflictingReservations(itemId, startAt, endAt);
+        if (!haveReservations.isEmpty()) {
+            throw new ReservationConflictException("해당 물건은 이미 그 시간에 예약이 있습니다.");
+        }
 
         Item item = itemRepository.findItemById(itemId);
         User user = userRepository.findUserById(userId);
@@ -145,6 +146,11 @@ public class ReservationService {
             reservation.updateStatus(ReservationStatus.EXPIRED);
             return;
         }
+//        pending 으로 변경 x
+//        if (ReservationStatus.PENDING.getName().equals(status)) {
+//            reservation.updateStatus(ReservationStatus.PENDING);
+//            return;
+//        }
 
         throw new IllegalArgumentException("올바르지 않은 상태: " + status);
 
