@@ -13,7 +13,7 @@ import org.jetbrains.annotations.TestOnly;
 
 @Entity
 @Getter
-@Table(name = "`user`")
+@Table(name = "app_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

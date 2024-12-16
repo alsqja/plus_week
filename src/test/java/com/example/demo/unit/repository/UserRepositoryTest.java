@@ -36,7 +36,9 @@ class UserRepositoryTest {
         User savedUser = userRepository.save(user1);
 
         User findUser = userRepository.findByEmail("email1@email.com");
+        User initUser = userRepository.findByEmail("email1");
 
+        assertEquals(1L, initUser.getId());
         assertEquals(savedUser.getId(), findUser.getId());
         assertEquals("name1", findUser.getNickname());
     }

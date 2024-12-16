@@ -10,12 +10,14 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.util.PasswordEncoder;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
+@Profile("dev")
 public class DataInitializer {
 
     private final UserRepository userRepository;
