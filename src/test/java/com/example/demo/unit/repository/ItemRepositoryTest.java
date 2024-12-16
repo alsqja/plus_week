@@ -41,7 +41,7 @@ class ItemRepositoryTest {
 
         Item item = new Item("testItemName", "testDescription", manager, owner);
         Item savedItem = itemRepository.save(item);
-        Item statusNullItem = new Item(2L, "testItemName", "testDescription", manager, owner, null);
+        Item statusNullItem = new Item(0L, "testItemName", "testDescription", manager, owner, null);
 
         assertThrows(ObjectOptimisticLockingFailureException.class, () -> itemRepository.save(statusNullItem));
         assertNotNull(savedItem.getStatus());

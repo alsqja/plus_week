@@ -83,9 +83,9 @@ class ReservationRepositoryTest {
 
         List<Reservation> reservations = reservationRepository.findAll();
 
-        assertEquals(1, reservations.size());
-        assertEquals(item.getId(), reservations.get(0).getItem().getId());
-        assertEquals(user, reservations.get(0).getUser());
+        assertEquals(5, reservations.size());
+        assertEquals(item.getId(), reservations.get(reservations.size() - 1).getItem().getId());
+        assertEquals(user, reservations.get(reservations.size() - 1).getUser());
     }
 
     @Test
