@@ -41,3 +41,10 @@
 ### 테스트 환경 분리
 - 인메모리 H2 DB 사용
 - data.sql 사용해 초기 데이터 세팅
+
+# 트러블 슈팅
+- [Controller Test](https://velog.io/@alsqja2626/Spring-Controller-Test)
+- [통합 테스트와 단위 테스트 패키징 방법](https://velog.io/@alsqja2626/Spring-%ED%86%B5%ED%95%A9-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%8C%A8%ED%82%A4%EC%A7%95-%EB%B0%A9%EB%B2%95)
+- [End-to-End 와 통합 테스트](https://velog.io/@alsqja2626/Spring-End-to-End-%EC%99%80-%ED%86%B5%ED%95%A9%EC%84%9C%EB%B9%84%EC%8A%A4)
+- [Test Code](https://velog.io/@alsqja2626/Spring-Test-Code)
+
