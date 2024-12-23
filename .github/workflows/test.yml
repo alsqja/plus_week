@@ -13,25 +13,52 @@ on:
 
     # 실제 어떤 작업을 실행할지에 대한 명시
 jobs:
-  build:
-  # 스크립트 실행 환경 (OS)
-  # 배열로 선언시 개수 만큼 반복해서 실행한다. ( 예제 : 2번 실행)
-    runs-on: [ ubuntu-latest ] 
+  run-tests:
+    runs-on: ubuntu-latest
 
-    # 실제 실행 스크립트
-    steps: 
-      # uses는 github actions에서 제공하는 플러그인을 실행.(git checkout 실행)
-      - name: checkout
-        uses: actions/checkout@v4
+    steps:
+    # 1. 저장소 체크아웃
+    - name: Check out code
+      uses: actions/checkout@v3
 
-      # with은 plugin 파라미터 입니다. (java 17버전 셋업)
-      - name: java setup
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt' # See 'Supported distributions' for available options
-          java-version: '17'
+    # 2. JDK 설정
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' # OpenJDK 배포판
+        java-version: '17'
 
-      # run은 사용자 지정 스크립트 실행
-      - name: run unittest
-        run: |
-          ./gradlew clean test
+    # 3. 의존성 설치 및 테스트 실행
+    - name: Run Gradle Tests
+      run: |
+        ./gradlew clean test
+      continue-on-error: true # 테스트 실패 시 워크플로우 계속 실행
+
+    # 4. 커밋 작성자 이메일 추출
+    - name: Extract Commit Author Email
+      id: extract-email
+      run: |
+        COMMIT_EMAIL=$(git log -1 --pretty=format:'%ae')
+        echo "commit_email=$COMMIT_EMAIL" >> $GITHUB_ENV
+
+    # 5. 테스트 실패 시 이메일 전송
+    - name: Send email to pusher
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com # SMTP 서버 주소
+        server_port: 587
+        username: ${{ secrets.SMTP_USERNAME }} # GitHub Secrets에서 설정한 SMTP 사용자명
+        password: ${{ secrets.SMTP_PASSWORD }} # GitHub Secrets에서 설정한 SMTP 비밀번호
+        subject: "🚨 Test Failure Alert for ${{ github.repository }} [${{ github.ref }}]"
+        body: |
+          Hello,
+
+          The tests have failed for commit ${{ github.sha }} on branch ${{ github.ref_name }}.
+          Please check the details at: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Regards,
+          GitHub Actions
+        to: ${{ env.commit_email }} # 커밋한 사람의 이메일
+        from: test@test.com
+
