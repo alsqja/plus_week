@@ -1,12 +1,13 @@
 name: test every pr
 on:
-  workflow_dispatch:
+  push:
+    branches: [ develop, feature/* ]
   pull_request:
-permissions:
-  contents: read
-  pull-requests: read
+    branches:
+      - develop
+      - main
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,4 +21,4 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
       - name: gradlew test
-        run: ./gradlew test
+        run: ./gradlew clean test
