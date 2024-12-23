@@ -20,7 +20,6 @@ public class ItemController {
         this.itemService = itemService;
     }
     
-
     @PostMapping
     public ResponseEntity<CommonResDto<ItemResDto>> createItem(@RequestBody ItemRequestDto itemRequestDto) {
         Item item = itemService.createItem(itemRequestDto.getName(),
